@@ -13,5 +13,5 @@ terraform init
 terraform plan 
 terraform apply
 terraform login // login to cloud
-
+terraform plan -var-file=s1.tfvars // tro den value cho varible, terraform cloud ko support varible o code ---> dung cho terraform local
 ```
