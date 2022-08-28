@@ -9,3 +9,11 @@ variable "private_key_path" {
   description = "This is path to private"
   default = "./aws-chuongnguyen.pem"
 }
+
+variable "app_name" {
+  type = string
+  description = "This is name EC2"
+  default = "HuanNV-CV"
+}
+
+

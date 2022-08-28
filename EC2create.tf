@@ -98,6 +98,9 @@ resource "aws_instance" "nginx" {
   subnet_id = aws_subnet.subnet1.id
   vpc_security_group_ids = [aws_security_group.nginx-sg.id]
   key_name = var.key_name
+  tags = {
+    Name        = "${var.app_name}"
+  }
 
   connection {
     type = "ssh"
@@ -108,9 +111,11 @@ resource "aws_instance" "nginx" {
 
   provisioner "remote-exec" {
     inline = [
-       "sudo yum install nginx -y",
-       "sudo service nginx start",
-       "sudo rm /usr/share/nginx/html/index.html"
+       " sudo yum install nginx -y",
+       " sudo sudo yum install docker -y",
+       " sudo service docker start",
+       " sudo usermod -a -G docker ec2-user",
+       " sudo docker run -dp 80:80 huannv93/cv:v3"
     ]
   }
 }
